@@ -22,22 +22,19 @@ export default class Downpour {
         this.rawString = name
     }
 
-    public get description(): string {
-        const titleDesc = `Title: ${this.title}\n`
-        let episodeDesc = ""
-        let seasonDesc = ""
-        let yearDesc = ""
-
-        if (this.episode) episodeDesc = `Episode: ${this.episode}\n`
-        if (this.season) seasonDesc = `Season: ${this.season}\n`
-        if (this.year) yearDesc = `Year: ${this.year}`
-
-        switch (this.type) {
-            case "tv":
-                return `${titleDesc}${episodeDesc}${seasonDesc}${yearDesc}`
-            case "movie":
-                return `${titleDesc}${yearDesc}`
-        }
+    public toString(): string {
+        return JSON.stringify(
+            {
+                title: this.title,
+                episode: this.episode,
+                season: this.season,
+                year: this.year,
+                type: this.type,
+                basicPlexName: this.basicPlexName
+            },
+            null,
+            4
+        )
     }
 
     /** The title of the media */
